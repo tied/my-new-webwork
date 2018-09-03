@@ -1,0 +1,42 @@
+<h1>success.soy</h1>
+{namespace webwork.config}
+/**
+ * This template is needed for drawing the formview.
+ */
+{template .formview}
+    {@param login: string}
+    {@param password: string}
+    {webResourceManager_requireResource('com.talmer.plugin.my-new-webwork:my-new-webwork-resources')}
+    <html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="decorator" content="atl.admin">
+        <meta name="admin.active.section" content="admin_plugins_menu/telegram-config-section">
+        <meta name="admin.active.tab" content="telegram-general-config-item">
+        <title>Jira credentials for exchange connection plugin</title>
+    </head>
+    <body>
+    <div id="container">
+        <form class="aui" action="ConfigWebwork!save.jspa" method="POST">
+
+            <div class="field-group">
+                <label for="login">Login</label>
+                <input class="text long-field" type="text"
+                       id="login" name="login" placeholder="" value="{$login}">
+            </div>
+            <div class="field-group">
+                <label for="password">Password</label>
+                <input class="text long-field" type="text"
+                       id="password" name="password" placeholder="" value="{$password}">
+            </div>
+            <div class="buttons-container">
+                <div class="buttons">
+                    <input class="button submit" type="submit" value="Save" id="config-save-button">
+                    <a class="cancel" href="#">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    </body>
+    </html>
+{/template}

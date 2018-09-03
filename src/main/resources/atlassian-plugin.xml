@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+    <param name="plugin-icon">images/pluginIcon.png</param>
+    <param name="plugin-logo">images/pluginLogo.png</param>
+  </plugin-info>
+  <!-- add our i18n resource -->
+  <resource type="i18n" name="i18n" location="my-new-webwork"/>
+  <!-- add our web resources -->
+  <web-resource key="my-new-webwork-resources" name="my-new-webwork Web Resources">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <resource type="download" name="my-new-webwork.css" location="/css/my-new-webwork.css"/>
+    <resource type="download" name="my-new-webwork.js" location="/js/my-new-webwork.js"/>
+    <resource type="download" name="images/" location="/images"/>
+    <resource type="soy" name="webwork-config" location="/templates/webwork-config/configwebwork/success.soy"/>
+    <context>my-new-webwork</context>
+  </web-resource>
+  <webwork1 key="webwork-config" name="Config" i18n-name-key="config.name">
+    <description key="config.description">The Config Plugin</description>
+    <actions>
+      <action name="com.talmer.plugin.jira.webwork.ConfigWebwork" alias="ConfigWebwork">
+        <view name="success" type="soy">:my-new-webwork-resources/webwork.config.formview</view>
+      </action>
+    </actions>
+  </webwork1>
+  <web-section name="Exchange Connection" i18n-name-key="exchange-connection.name" key="exchange-connection" location="admin_plugins_menu" weight="1000">
+    <description key="exchange-connection.description">The Exchange Connection Plugin</description>
+    <label key="exchange-connection.label"/>
+  </web-section>
+  <web-item name="Exchange Connection Settings" i18n-name-key="exchange-connection-settings.name" key="exchange-connection-settings" section="admin_plugins_menu/exchange-connection" weight="1000">
+    <description key="exchange-connection-settings.description">The Exchange Connection Settings Plugin</description>
+    <label key="exchange-connection-settings.label"></label>
+    <link linkId="exchange-connection-settings-link">/secure/ConfigWebwork.jspa?</link>
+  </web-item>
+</atlassian-plugin>

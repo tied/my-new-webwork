@@ -11,13 +11,15 @@
     </organization>
     <name>my-new-webwork</name>
     <description>This is the com.talmer.plugin:my-new-webwork plugin for Atlassian JIRA.</description>
+
     <packaging>atlassian-plugin</packaging>
+
     <dependencies>
         <dependency>
             <groupId>net.rcarz</groupId>
             <artifactId>jira-client</artifactId>
             <version>0.5</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.atlassian.jira</groupId>
@@ -160,6 +162,7 @@
         </plugins>
     </build>
     <properties>
+        <Import-Package>net.rcarz.*;version="0";resolution:="optional"</Import-Package>
         <jira.version>7.7.1</jira.version>
         <amps.version>6.3.15</amps.version>
         <plugin.testrunner.version>1.2.3</plugin.testrunner.version>

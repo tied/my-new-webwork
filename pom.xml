@@ -72,6 +72,7 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.2.2-atlassian-1</version>
+            <scope>compile</scope>
         </dependency>
         <!-- Uncomment to use TestKit in your project. Details at https://bitbucket.org/atlassian/jira-testkit -->
         <!-- You can read more about TestKit at https://developer.atlassian.com/display/JIRADEV/Plugin+Tutorial+-+Smarter+integration+testing+with+TestKit -->
@@ -124,6 +125,12 @@
                     -->
                     <enableQuickReload>true</enableQuickReload>
                     <enableFastdev>false</enableFastdev>
+                    <pluginDependencies>
+                        <pluginDependency>
+                            <groupId>net.rcarz</groupId>
+                            <artifactId>jira-client</artifactId>
+                        </pluginDependency>
+                    </pluginDependencies>
                     <!-- See here for an explanation of default instructions: -->
                     <!-- https://developer.atlassian.com/docs/advanced-topics/configuration-of-instructions-in-atlassian-plugins -->
                     <instructions>
@@ -131,7 +138,9 @@
                         <!-- Add package to export here -->
                         <Export-Package>com.talmer.plugin.api,</Export-Package>
                         <!-- Add package import here -->
-                        <Import-Package>org.springframework.osgi.*;resolution:="optional", org.eclipse.gemini.blueprint.*;resolution:="optional", *</Import-Package>
+                        <Import-Package>org.springframework.osgi.*;resolution:="optional",
+                            org.eclipse.gemini.blueprint.*;resolution:="optional", *</Import-Package>
+                        <Import-Package>net.rcarz.*;version="0";resolution:="optional"</Import-Package>
                         <!-- Ensure plugin is spring powered -->
                         <Spring-Context>*</Spring-Context>
                     </instructions>
@@ -162,7 +171,6 @@
         </plugins>
     </build>
     <properties>
-        <Import-Package>net.rcarz.*;version="0";resolution:="optional"</Import-Package>
         <jira.version>7.7.1</jira.version>
         <amps.version>6.3.15</amps.version>
         <plugin.testrunner.version>1.2.3</plugin.testrunner.version>

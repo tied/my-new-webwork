@@ -36,7 +36,7 @@ public class SyncService extends AbstractService {
 
     @Override
     public ObjectConfiguration getObjectConfiguration() throws ObjectConfigurationException {
-        return getObjectConfiguration("MYNEWSERVICE", "", null);
+        return getObjectConfiguration("MYNEWSERVICE", "com.talmer.plugin.service/mynewsyncservice.xml", null);
 
     }
 }

@@ -11,8 +11,8 @@ import javax.inject.Inject;
 public class ConfigWebwork extends JiraWebActionSupport {
     private static final Logger log = LoggerFactory.getLogger(ConfigWebwork.class);
     private final PluginSettingService pluginSettingService;
-    private String login;
-    private String password;
+    public static String login;
+    public static String password;
 
     @Inject
     public ConfigWebwork(PluginSettingService pluginSettingService) {

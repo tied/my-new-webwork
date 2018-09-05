@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.talmer.plugin</groupId>
     <artifactId>my-new-webwork</artifactId>
@@ -15,6 +16,24 @@
     <packaging>atlassian-plugin</packaging>
 
     <dependencies>
+        <dependency>
+            <groupId>exchange.connection.library</groupId>
+            <artifactId>jira-library</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>/home/nik_aleks/JWebServices/lib/jwebservices-2.0.jar</systemPath>
+        </dependency>
+
+        <!--Custom util library-->
+        <dependency>
+            <groupId>com.talmer.util</groupId>
+            <artifactId>util-library</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>/home/nik_aleks/IdeaProjects/jira-util/target/jira-util-1.0.0-SNAPSHOT.jar</systemPath>
+        </dependency>
+
+
         <dependency>
             <groupId>net.rcarz</groupId>
             <artifactId>jira-client</artifactId>
@@ -130,6 +149,17 @@
                             <groupId>net.rcarz</groupId>
                             <artifactId>jira-client</artifactId>
                         </pluginDependency>
+
+                        <pluginDependency>
+                            <groupId>exchange.connection.library</groupId>
+                            <artifactId>jira-library</artifactId>
+                        </pluginDependency>
+
+                        <pluginDependency>
+                            <groupId>com.talmer.util</groupId>
+                            <artifactId>util-library</artifactId>
+                        </pluginDependency>
+
                     </pluginDependencies>
                     <!-- See here for an explanation of default instructions: -->
                     <!-- https://developer.atlassian.com/docs/advanced-topics/configuration-of-instructions-in-atlassian-plugins -->
@@ -138,11 +168,16 @@
                         <!-- Add package to export here -->
                         <Export-Package>com.talmer.plugin.api,
                             net.rcarz*,
+                            exchange.connection.library*,
                         </Export-Package>
                         <!-- Add package import here -->
                         <Import-Package>org.springframework.osgi.*;resolution:="optional",
                             org.eclipse.gemini.blueprint.*;resolution:="optional",
-                            net.rcarz*;version="0";resolution:="optional", *</Import-Package>
+                            net.rcarz*;version="0";resolution:="optional",
+                            exchange.connection.library*;version="0";resolution:="optional",
+                            com.talmer.util.api;version="0";resolution:="optional",
+                            com.talmer.util.impl;version="0";resolution:="optional",*
+                        </Import-Package>
                         <!-- Ensure plugin is spring powered -->
                         <Spring-Context>*</Spring-Context>
                     </instructions>

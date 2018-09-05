@@ -8,14 +8,18 @@ import com.opensymphony.module.propertyset.PropertySet;
 import net.rcarz.jiraclient.BasicCredentials;
 import net.rcarz.jiraclient.JiraClient;
 
+import javax.inject.Inject;
+
 public class SyncService extends AbstractService {
 
-
+    private BasicCredentials basicCredentials;
+    private JiraClient jiraClient;
 
     @Override
     public void init(PropertySet props, long configurationIdentifier) throws ObjectConfigurationException {
         super.init(props, configurationIdentifier);
     }
+
 
     @Override
     public void run() {

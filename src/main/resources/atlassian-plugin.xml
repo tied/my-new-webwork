@@ -36,4 +36,13 @@
     <label key="exchange-connection-settings.label"></label>
     <link linkId="exchange-connection-settings-link">/secure/ConfigWebwork.jspa?</link>
   </web-item>
+  <!--<component-import key="ao" name="Active Objects service" interface="com.atlassian.activeobjects.external.ActiveObjects">-->
+    <!--<description>Component to access Active Objects functionality from the plugin</description>-->
+  <!--</component-import>-->
+  <!--<ao key="ao-entity">-->
+    <!--<entity>com.talmer.plugin.entity.ExchangeUserEntity</entity>-->
+  <!--</ao>-->
+  <!--<component key="dao-factory" class="com.talmer.plugin.DAO.DAOFactory"/>-->
+
+
 </atlassian-plugin>

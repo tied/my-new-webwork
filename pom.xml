@@ -33,6 +33,15 @@
             <systemPath>/home/nik_aleks/IdeaProjects/jira-util/target/jira-util-1.0.0-SNAPSHOT.jar</systemPath>
         </dependency>
 
+        <dependency>
+            <groupId>com.atlassian.activeobjects</groupId>
+            <artifactId>activeobjects-plugin</artifactId>
+            <version>RELEASE</version>
+            <scope>provided</scope>
+        </dependency>
+
+
+
 
         <dependency>
             <groupId>net.rcarz</groupId>
@@ -169,6 +178,8 @@
                         <Export-Package>com.talmer.plugin.api,
                             net.rcarz*,
                             exchange.connection.library*,
+                            com.talmer.util.api,
+                            com.talmer.util.impl,
                         </Export-Package>
                         <!-- Add package import here -->
                         <Import-Package>org.springframework.osgi.*;resolution:="optional",

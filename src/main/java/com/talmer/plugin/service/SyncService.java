@@ -5,10 +5,13 @@ import com.atlassian.configurable.ObjectConfigurationException;
 import com.atlassian.jira.component.ComponentAccessor;
 import com.atlassian.jira.service.AbstractService;
 //import com.independentsoft.exchange.*;
+import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import com.opensymphony.module.propertyset.PropertySet;
 import com.talmer.plugin.jira.webwork.ConfigWebwork;
 import com.talmer.util.api.DataManipulator;
 import com.talmer.util.impl.DataManipulatorImpl;
+
+import javax.inject.Inject;
 
 //import net.rcarz.jiraclient.BasicCredentials;
 //import net.rcarz.jiraclient.JiraClient;
@@ -26,7 +29,14 @@ public class SyncService extends AbstractService {
 
     private DataManipulator dataManipulator;
 
-    @Override
+//    @Inject
+//    public SyncService(@ComponentImport DataManipulator dataManipulator, PropertySet props) throws ObjectConfigurationException {
+//        super.init(props);
+//        this.dataManipulator = dataManipulator;
+//
+//    }
+
+        @Override
     public void init(PropertySet props, long configurationIdentifier) throws ObjectConfigurationException {
         super.init(props, configurationIdentifier);
         dataManipulator = new DataManipulatorImpl();
@@ -43,14 +53,14 @@ public class SyncService extends AbstractService {
         System.out.println("Let me do this before run!");
         System.out.println("_______________________________");
         String baseUrl = ComponentAccessor.getApplicationProperties().getString("jira.baseurl");
-        //Create JIRA connection
+
         if (ConfigWebwork.login != null & ConfigWebwork.password != null) {
             System.out.println("JIRA CREDENTIALS HAVE BEEN REGISTERED!!!");
             System.out.println("_________________________________________");
-//            this.dataManipulator = new DataManipulatorImpl();
-            this.dataManipulator.setJiraCredentials(ConfigWebwork.login, ConfigWebwork.password);
-            this.dataManipulator.setExchangeCredentials("n.aleksandrov", "Dahakamer12");
-            this.dataManipulator.syncData(baseUrl, "https://mx1.talmer.ru/EWS/Exchange.asmx");
+//            dataManipulator = new DataManipulatorImpl();
+            dataManipulator.setJiraCredentials(ConfigWebwork.login, ConfigWebwork.password);
+            dataManipulator.setExchangeCredentials("n.aleksandrov", "Dahakamer12");
+            dataManipulator.syncData(baseUrl, "https://mx1.talmer.ru/EWS/Exchange.asmx");
 
         }
     }

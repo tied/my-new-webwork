@@ -1,8 +1,10 @@
 package com.talmer.plugin.DAO;
 
+import com.atlassian.activeobjects.tx.Transactional;
 import com.talmer.plugin.entity.ExchangeUserEntity;
 import com.talmer.plugin.logic.ExchangeUser;
 
+@Transactional
 public interface ExchangeUserDAO {
     public ExchangeUserEntity addExchangeUser(ExchangeUser user) throws Exception;
 

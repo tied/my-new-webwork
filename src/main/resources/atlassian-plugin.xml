@@ -33,16 +33,23 @@
   </web-section>
   <web-item name="Exchange Connection Settings" i18n-name-key="exchange-connection-settings.name" key="exchange-connection-settings" section="admin_plugins_menu/exchange-connection" weight="1000">
     <description key="exchange-connection-settings.description">The Exchange Connection Settings Plugin</description>
-    <label key="exchange-connection-settings.label"></label>
+    <label key="exchange-connection-settings.label"/>
     <link linkId="exchange-connection-settings-link">/secure/ConfigWebwork.jspa?</link>
   </web-item>
   <!--<component-import key="ao" name="Active Objects service" interface="com.atlassian.activeobjects.external.ActiveObjects">-->
-    <!--<description>Component to access Active Objects functionality from the plugin</description>-->
+  <!--<description>Component to access Active Objects functionality from the plugin</description>-->
   <!--</component-import>-->
-  <!--<ao key="ao-entity">-->
-    <!--<entity>com.talmer.plugin.entity.ExchangeUserEntity</entity>-->
-  <!--</ao>-->
+  <ao key="ao-entity">
+  <entity>com.talmer.plugin.entity.ExchangeUserEntity</entity>
+  </ao>
   <!--<component key="dao-factory" class="com.talmer.plugin.DAO.DAOFactory"/>-->
-
-
+  <web-section name="Exchange Credentials" i18n-name-key="exchange-credentials.name" key="exchange-credentials" location="my_links_link" weight="10">
+    <description key="exchange-credentials.description">The Exchange Credentials Plugin</description>
+    <label key="exchange-credentials.label"/>
+  </web-section>
+  <web-item name="Exchange Credentials" i18n-name-key="credentials.name" key="credentials" section="system.top.navigation.bar" weight="47">
+    <description key="credentials.description">The Credentials Plugin</description>
+    <label key="credentials.label"/>
+    <link linkId="credentials-link">/secure/ConfigWebwork.jspa?</link>
+  </web-item>
 </atlassian-plugin>

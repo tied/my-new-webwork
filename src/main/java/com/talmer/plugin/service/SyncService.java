@@ -4,42 +4,34 @@ import com.atlassian.configurable.ObjectConfiguration;
 import com.atlassian.configurable.ObjectConfigurationException;
 import com.atlassian.jira.component.ComponentAccessor;
 import com.atlassian.jira.service.AbstractService;
-//import com.independentsoft.exchange.*;
-import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import com.opensymphony.module.propertyset.PropertySet;
-import com.talmer.plugin.jira.webwork.ConfigWebwork;
+import com.talmer.plugin.DAO.ExchangeUserDAO;
+import com.talmer.plugin.logic.ExchangeUser;
 import com.talmer.util.api.DataManipulator;
-import com.talmer.util.impl.DataManipulatorImpl;
+import net.rcarz.jiraclient.BasicCredentials;
+import net.rcarz.jiraclient.JiraClient;
+
 
 import javax.inject.Inject;
-
-//import net.rcarz.jiraclient.BasicCredentials;
-//import net.rcarz.jiraclient.JiraClient;
-
-//import javax.inject.Inject;
-//import java.text.ParseException;
-//import java.text.SimpleDateFormat;
-//import java.util.Date;
 
 public class SyncService extends AbstractService {
 
     public static final String TUTORIAL = "Tutorial";
-
+    private final ExchangeUserDAO userDAO;
     private String tutorial;
+    private DataManipulator manipulator;
 
-    private DataManipulator dataManipulator;
 
-//    @Inject
-//    public SyncService(@ComponentImport DataManipulator dataManipulator, PropertySet props) throws ObjectConfigurationException {
-//        super.init(props);
-//        this.dataManipulator = dataManipulator;
-//
-//    }
+    @Inject
+    public SyncService(ExchangeUserDAO userDAO, DataManipulator manipulator) {
+        this.userDAO = userDAO;
+        this.manipulator = manipulator;
+    }
 
-        @Override
+    @Override
     public void init(PropertySet props, long configurationIdentifier) throws ObjectConfigurationException {
         super.init(props, configurationIdentifier);
-        dataManipulator = new DataManipulatorImpl();
+//        dataManipulator = new DataManipulatorImpl();
         if (hasProperty(TUTORIAL)) {
             tutorial = getProperty(TUTORIAL);
         } else {
@@ -53,16 +45,24 @@ public class SyncService extends AbstractService {
         System.out.println("Let me do this before run!");
         System.out.println("_______________________________");
         String baseUrl = ComponentAccessor.getApplicationProperties().getString("jira.baseurl");
-
-        if (ConfigWebwork.login != null & ConfigWebwork.password != null) {
-            System.out.println("JIRA CREDENTIALS HAVE BEEN REGISTERED!!!");
-            System.out.println("_________________________________________");
-//            dataManipulator = new DataManipulatorImpl();
-            dataManipulator.setJiraCredentials(ConfigWebwork.login, ConfigWebwork.password);
-            dataManipulator.setExchangeCredentials("n.aleksandrov", "Dahakamer12");
-            dataManipulator.syncData(baseUrl, "https://mx1.talmer.ru/EWS/Exchange.asmx");
-
+        try {
+            for (ExchangeUser user : userDAO.getExchangeUsers()) {
+                System.out.println("Login: " + user.getLogin() + ", Password: " + user.getPassword());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        //Create JIRA connection
+        BasicCredentials creds = new BasicCredentials("admin", "admin");
+        JiraClient jira = new JiraClient(baseUrl, creds);
+
+//        dataManipulator = (DataManipulator) new DataManipulatorImpl();
+//        dataManipulator.setJiraCredentials("n.aleksandrov", "Dahakamer12");
+//        dataManipulator.setExchangeCredentials("n.aleksandrov", "Dahakamer12");
+//        dataManipulator.syncData(baseUrl, "https://mx1.talmer.ru/EWS/Exchange.asmx");
+
+
     }
 
     @Override

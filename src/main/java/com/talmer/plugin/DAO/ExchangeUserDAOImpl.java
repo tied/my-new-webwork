@@ -1,15 +1,22 @@
 package com.talmer.plugin.DAO;
 
 import com.atlassian.activeobjects.external.ActiveObjects;
+import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import com.atlassian.sal.api.transaction.TransactionCallback;
 import com.talmer.plugin.entity.ExchangeUserEntity;
 import com.talmer.plugin.logic.ExchangeUser;
 import net.java.ao.Query;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
+@Named
 public class ExchangeUserDAOImpl implements ExchangeUserDAO {
 
+    @ComponentImport
     private final ActiveObjects ao;
 
+    @Inject
     public ExchangeUserDAOImpl(ActiveObjects ao) {
         this.ao = ao;
     }
@@ -34,7 +41,7 @@ public class ExchangeUserDAOImpl implements ExchangeUserDAO {
     public ExchangeUserEntity[] deleteExchangeUser(ExchangeUser user) throws Exception {
         return ao.executeInTransaction(() -> {
             ExchangeUserEntity[] entities = ao.find(ExchangeUserEntity.class,
-                    Query.select().where("login=? and password=?",user.getLogin(),user.getPassword()));
+                    Query.select().where("login=? and password=?", user.getLogin(), user.getPassword()));
             ao.delete(entities);
             return entities;
         });

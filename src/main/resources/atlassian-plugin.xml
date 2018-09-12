@@ -36,13 +36,11 @@
     <label key="exchange-connection-settings.label"/>
     <link linkId="exchange-connection-settings-link">/secure/ConfigWebwork.jspa?</link>
   </web-item>
-  <!--<component-import key="ao" name="Active Objects service" interface="com.atlassian.activeobjects.external.ActiveObjects">-->
-  <!--<description>Component to access Active Objects functionality from the plugin</description>-->
-  <!--</component-import>-->
+
   <ao key="ao-entity">
   <entity>com.talmer.plugin.entity.ExchangeUserEntity</entity>
   </ao>
-  <!--<component key="dao-factory" class="com.talmer.plugin.DAO.DAOFactory"/>-->
+
   <web-section name="Exchange Credentials" i18n-name-key="exchange-credentials.name" key="exchange-credentials" location="my_links_link" weight="10">
     <description key="exchange-credentials.description">The Exchange Credentials Plugin</description>
     <label key="exchange-credentials.label"/>
@@ -52,4 +50,6 @@
     <label key="credentials.label"/>
     <link linkId="credentials-link">/secure/ConfigWebwork.jspa?</link>
   </web-item>
+
+  <!--Делать component-import нельзя, либо использовать аннотации либо component-import. Нельзя использовать оба варианта.-->
 </atlassian-plugin>

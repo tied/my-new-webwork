@@ -7,10 +7,6 @@ import com.atlassian.jira.service.AbstractService;
 import com.opensymphony.module.propertyset.PropertySet;
 import com.talmer.plugin.DAO.ExchangeUserDAO;
 import com.talmer.plugin.logic.ExchangeUser;
-import com.talmer.util.api.DataManipulator;
-import net.rcarz.jiraclient.BasicCredentials;
-import net.rcarz.jiraclient.JiraClient;
-
 
 import javax.inject.Inject;
 
@@ -19,26 +15,21 @@ public class SyncService extends AbstractService {
     public static final String TUTORIAL = "Tutorial";
     private final ExchangeUserDAO userDAO;
     private String tutorial;
-    private DataManipulator manipulator;
-
 
     @Inject
-    public SyncService(ExchangeUserDAO userDAO, DataManipulator manipulator) {
+    public SyncService(ExchangeUserDAO userDAO) {
         this.userDAO = userDAO;
-        this.manipulator = manipulator;
     }
 
     @Override
     public void init(PropertySet props, long configurationIdentifier) throws ObjectConfigurationException {
         super.init(props, configurationIdentifier);
-//        dataManipulator = new DataManipulatorImpl();
         if (hasProperty(TUTORIAL)) {
             tutorial = getProperty(TUTORIAL);
         } else {
             tutorial = "I don't like tutorials!";
         }
     }
-
 
     @Override
     public void run() {
@@ -54,10 +45,10 @@ public class SyncService extends AbstractService {
         }
 
         //Create JIRA connection
-        BasicCredentials creds = new BasicCredentials("admin", "admin");
-        JiraClient jira = new JiraClient(baseUrl, creds);
+//        BasicCredentials creds = new BasicCredentials("admin", "admin");
+//        JiraClient jira = new JiraClient(baseUrl, creds);
 
-//        dataManipulator = (DataManipulator) new DataManipulatorImpl();
+//        manipulator = new DataManipulatorImpl();
 //        dataManipulator.setJiraCredentials("n.aleksandrov", "Dahakamer12");
 //        dataManipulator.setExchangeCredentials("n.aleksandrov", "Dahakamer12");
 //        dataManipulator.syncData(baseUrl, "https://mx1.talmer.ru/EWS/Exchange.asmx");

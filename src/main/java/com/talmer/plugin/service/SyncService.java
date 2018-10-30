@@ -50,17 +50,14 @@ public class SyncService extends AbstractService {
 
         dataManipulator = new DataManipulatorImpl();
         dataManipulator.setJiraCredentials("admin", "admin");
-        dataManipulator.setExchangeCredentials("n.aleksandrov", "Dahakamer12");
-        dataManipulator.syncData("http://localhost:2990/jira", "https://mx1.talmer.ru/EWS/Exchange.asmx");
+       
 
         //Create JIRA connection
 //        BasicCredentials creds = new BasicCredentials("admin", "admin");
 //        JiraClient jira = new JiraClient(baseUrl, creds);
 
 //        manipulator = new DataManipulatorImpl();
-//        dataManipulator.setJiraCredentials("n.aleksandrov", "Dahakamer12");
-//        dataManipulator.setExchangeCredentials("n.aleksandrov", "Dahakamer12");
-//        dataManipulator.syncData(baseUrl, "https://mx1.talmer.ru/EWS/Exchange.asmx");
+
 
 
     }

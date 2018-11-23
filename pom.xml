@@ -26,16 +26,22 @@
             <!--<name>nexus-repo</name>-->
             <!--<url>http://localhost:8081/repository/newrepo/</url>-->
         <!--</repository>-->
+
+        <repository>
+            <id>local</id>
+            <name>local-repo</name>
+            <url>file:${project.basedir}</url>
+        </repository>
     </repositories>
 
     <dependencies>
-        <dependency>
-            <groupId>exchange.connection.library</groupId>
-            <artifactId>jira-library</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-            <scope>system</scope>
-            <systemPath>/home/nik_aleks/JWebServices/lib/jwebservices-2.0.jar</systemPath>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>exchange.connection.library</groupId>-->
+            <!--<artifactId>jira-library</artifactId>-->
+            <!--<version>1.0.0-SNAPSHOT</version>-->
+            <!--<scope>system</scope>-->
+            <!--<systemPath>/home/nik_aleks/JWebServices/lib/jwebservices-2.0.jar</systemPath>-->
+        <!--</dependency>-->
 
         <!--Custom util library-->
         <!--<dependency>-->
@@ -44,6 +50,13 @@
             <!--<version>1.0.0-SNAPSHOT</version>-->
             <!--<scope>provided</scope>-->
         <!--</dependency>-->
+
+        <dependency>
+            <groupId>com.talmer.util</groupId>
+            <artifactId>jira-util</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
 
         <dependency>
             <groupId>com.atlassian.activeobjects</groupId>
@@ -163,19 +176,24 @@
                     <enableQuickReload>true</enableQuickReload>
                     <enableFastdev>false</enableFastdev>
                     <pluginDependencies>
-                        <pluginDependency>
-                            <groupId>net.rcarz</groupId>
-                            <artifactId>jira-client</artifactId>
-                        </pluginDependency>
+                        <!--<pluginDependency>-->
+                            <!--<groupId>net.rcarz</groupId>-->
+                            <!--<artifactId>jira-client</artifactId>-->
+                        <!--</pluginDependency>-->
 
-                        <pluginDependency>
-                            <groupId>exchange.connection.library</groupId>
-                            <artifactId>jira-library</artifactId>
-                        </pluginDependency>
+                        <!--<pluginDependency>-->
+                            <!--<groupId>exchange.connection.library</groupId>-->
+                            <!--<artifactId>jira-library</artifactId>-->
+                        <!--</pluginDependency>-->
+
+                        <!--<pluginDependency>-->
+                            <!--<groupId>com.talmer.util</groupId>-->
+                            <!--<artifactId>util-library</artifactId>-->
+                        <!--</pluginDependency>-->
 
                         <pluginDependency>
                             <groupId>com.talmer.util</groupId>
-                            <artifactId>util-library</artifactId>
+                            <artifactId>jira-util</artifactId>
                         </pluginDependency>
 
                     </pluginDependencies>
@@ -185,7 +203,7 @@
                         <Atlassian-Plugin-Key>${atlassian.plugin.key}</Atlassian-Plugin-Key>
                         <!-- Add package to export here -->
                         <Export-Package>com.talmer.plugin.api,
-                            net.rcarz*,
+                            <!--net.rcarz*,-->
                             exchange.connection.library*,
                             com.talmer.util.api,
                             com.talmer.util.impl,
@@ -195,6 +213,7 @@
                             org.eclipse.gemini.blueprint.*;resolution:="optional",
                             net.rcarz*;version="0";resolution:="optional",
                             exchange.connection.library*;version="0";resolution:="optional",
+                            com.talmer.util*;version="0";resolution:="optional",
 
                             <!--com.talmer.util.api;version="0";resolution:="optional",-->
                             <!--com.talmer.util.impl;version="0";resolution:="optional",-->
@@ -242,6 +261,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <!--<extractDependencies>false</extractDependencies>-->
+        <extractDependencies>false</extractDependencies>
     </properties>
 </project>

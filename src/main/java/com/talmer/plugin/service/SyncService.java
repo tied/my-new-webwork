@@ -7,6 +7,8 @@ import com.atlassian.jira.service.AbstractService;
 import com.opensymphony.module.propertyset.PropertySet;
 import com.talmer.plugin.DAO.ExchangeUserDAO;
 import com.talmer.plugin.logic.ExchangeUser;
+import com.talmer.util.api.DataManipulator;
+import com.talmer.util.impl.DataManipulatorImpl;
 
 import javax.inject.Inject;
 
@@ -15,10 +17,12 @@ public class SyncService extends AbstractService {
     public static final String TUTORIAL = "Tutorial";
     private final ExchangeUserDAO userDAO;
     private String tutorial;
+    private DataManipulator dataManipulator;
 
     @Inject
-    public SyncService(ExchangeUserDAO userDAO) {
+    public SyncService(ExchangeUserDAO userDAO, DataManipulator dataManipulator) {
         this.userDAO = userDAO;
+        this.dataManipulator = dataManipulator;
     }
 
     @Override
@@ -44,14 +48,16 @@ public class SyncService extends AbstractService {
             e.printStackTrace();
         }
 
+        dataManipulator = new DataManipulatorImpl();
+        dataManipulator.setJiraCredentials("admin", "admin");
+       
+
         //Create JIRA connection
 //        BasicCredentials creds = new BasicCredentials("admin", "admin");
 //        JiraClient jira = new JiraClient(baseUrl, creds);
 
 //        manipulator = new DataManipulatorImpl();
-//        dataManipulator.setJiraCredentials("n.aleksandrov", "Dahakamer12");
-//        dataManipulator.setExchangeCredentials("n.aleksandrov", "Dahakamer12");
-//        dataManipulator.syncData(baseUrl, "https://mx1.talmer.ru/EWS/Exchange.asmx");
+
 
 
     }
